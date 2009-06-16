@@ -14,3 +14,7 @@ if defined?(Merb::Plugins)
     # code that can be required after the application loads
   end
 end
+
+%w{ dm }.each do |file|
+  require File.dirname(__FILE__) + '/paginate/' + file
+end
