@@ -134,19 +134,21 @@ end
 # the correct options.
 shared_examples_for "ORM paginate methods" do
   it "should set limit and offset options" do
-    @model.should_receive(:all).with(:offset => 0, :limit => @limit)
-    @model.paginate(:page => 1, :limit => @limit)
+    limit = 10
     
-    @model.should_receive(:all).with(:offset => 0, :limit => @limit + 1)
-    @model.paginate(:page => 1, :limit => @limit + 1)
+    @model.should_receive(:all).with(:offset => 0, :limit => limit)
+    @model.paginate(:page => 1, :limit => limit)
     
-    @model.should_receive(:all).with(:offset => 0, :limit => @limit + 2)
-    @model.paginate(:limit => @limit + 2)
+    @model.should_receive(:all).with(:offset => 0, :limit => limit + 1)
+    @model.paginate(:page => 1, :limit => limit + 1)
     
-    @model.should_receive(:all).with(:offset => @limit, :limit => @limit)
-    @model.paginate(:page => 2, :limit => @limit)
+    @model.should_receive(:all).with(:offset => 0, :limit => limit + 2)
+    @model.paginate(:limit => limit + 2)
+    
+    @model.should_receive(:all).with(:offset => limit, :limit => limit)
+    @model.paginate(:page => 2, :limit => limit)
 
-    @model.should_receive(:all).with(:offset => 40, :limit => @limit)
-    @model.paginate(:page => -1, :limit => @limit)
+    @model.should_receive(:all).with(:offset => 40, :limit => limit)
+    @model.paginate(:page => -1, :limit => limit)
   end
 end

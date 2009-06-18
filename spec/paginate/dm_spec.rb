@@ -14,7 +14,6 @@ describe Paginate::DM do
     1.upto(50) do |i|
       Model.create(:name => "Person #{i}")
     end
-    @limit = 10
     @model = Model
   end
   
