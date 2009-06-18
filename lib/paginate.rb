@@ -1,3 +1,4 @@
+# TODO Any config such as this? Maybe for default limit?
 # make sure we're running inside Merb
 if defined?(Merb::Plugins)
 
@@ -13,6 +14,14 @@ if defined?(Merb::Plugins)
   Merb::BootLoader.after_app_loads do
     # code that can be required after the application loads
   end
+end
+
+module Paginate
+  DEFAULT_LIMIT = 10
+end
+
+%w{ simple }.each do |file|
+  require File.dirname(__FILE__) + '/paginators/' + file
 end
 
 %w{ dm }.each do |file|
