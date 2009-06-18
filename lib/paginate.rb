@@ -20,7 +20,7 @@ module Paginate
   DEFAULT_LIMIT = 10
 end
 
-%w{ simple }.each do |file|
+%w{ simple orm }.each do |file|
   require File.dirname(__FILE__) + '/paginators/' + file
 end
 
