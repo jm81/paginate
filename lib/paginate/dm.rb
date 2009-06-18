@@ -2,7 +2,6 @@ module Paginate
   
   # .pagination method for DataMapper models.  
   module DM
-    DEFAULT_LIMIT = 100
     
     # Implementation of .paginate for DataMapper.
     # (This is loosely based on http://github.com/lholden/dm-is-paginated)
