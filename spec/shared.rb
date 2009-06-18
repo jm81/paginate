@@ -109,7 +109,7 @@ shared_examples_for "all Paginate modules" do
     end
     
     it 'should be 1 if there are no results' do
-      @model.all.each { |r| r.destroy }
+      destroy_all
       collection = @model.paginate(:limit => 10)
       collection.pages.should == 1
     end
