@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../spec_helper'
-require File.dirname(__FILE__) + '/shared'
 
 describe Paginate::Paginators::Simple do 
   # No instance variables are expected by the shared specs, only a +paginated+
@@ -13,11 +12,17 @@ describe Paginate::Paginators::Simple do
   end
   
   # paginated is called by shared specs to get a paginated result for the
-  # collection. It should just return an Array of Strings, such as:
-  # ["Person 1", "Person 2"], so #collect may be needed in more complex
-  # classes.
+  # collection.
   def paginated(options = {})
     @klass.new(@full_collection, options).paginate
+  end
+  
+  # paginated_collected returns results in a standard format: It should just 
+  # return an Array of Strings, such as:
+  # ["Person 1", "Person 2"], so #collect may be needed in more complex
+  # classes.
+  def paginated_collected(options = {})
+    paginated(options)
   end
   
   # destroy_all is called to make @full_collection an empty set. This may mean
@@ -27,6 +32,6 @@ describe Paginate::Paginators::Simple do
   end
   
   describe '#paginate' do
-    it_should_behave_like "all Paginators"
+    it_should_behave_like "all paginate methods"
   end
 end

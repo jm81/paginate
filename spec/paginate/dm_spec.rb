@@ -18,29 +18,32 @@ describe Paginate::DM do
     @model = Model
   end
   
+  def paginated(options = {})
+    Model.paginate(options)
+  end
+
+  def paginated_collected(options = {})
+    Model.paginate(options).collect {|r| r.name}
+  end
+  
   def destroy_all
     @model.all.destroy!
   end
   
   describe '#paginate' do
-    it_should_behave_like "all Paginate modules"
-    it_should_behave_like "Paginate ORM modules"
+    it_should_behave_like "all paginate methods"
+    it_should_behave_like "ORM paginate methods"
         
     it 'should order per options passed' do
-      Model.paginate(:limit => 3, :page => 1, :order => [:id.desc]).collect {|r| r.name}.should ==
+      paginated_collected(:limit => 3, :page => 1, :order => [:id.desc]).should ==
         ["Person 50", "Person 49", "Person 48"]
     end
     
     it 'should accept conditions (representative of options to .all)' do
-      collection = Model.paginate(:limit => 3, :page => 1, :name.like => 'Person 3%')
+      collection = paginated(:limit => 3, :page => 1, :name.like => 'Person 3%')
       collection.collect {|r| r.name}.should ==
         ["Person 3", "Person 30", "Person 31"]
       collection.pages.should == 4
-    end
-    
-    it 'should default limit to DEFAULT_LIMIT' do
-      Model.should_receive(:all).with(:offset => 0, :limit => Paginate::DM::DEFAULT_LIMIT)
-      Model.paginate
     end
   end
 end
