@@ -24,6 +24,6 @@ end
   require File.dirname(__FILE__) + '/paginators/' + file
 end
 
-%w{ dm }.each do |file|
+%w{ simple dm }.each do |file|
   require File.dirname(__FILE__) + '/paginate/' + file
 end
