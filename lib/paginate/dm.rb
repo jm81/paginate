@@ -33,39 +33,7 @@ module Paginate
     # .count with options similar to DataMapper (offset and limit are a must)
     # For example, this would probably work in an ActiveRecord model.
     def paginate(options = {})
-      page = options.delete(:page).to_i
-      limit = options[:limit] ? options[:limit].to_i : DEFAULT_LIMIT
-      order = options[:order]
-      
-      # Remove some options before calling +count+ that are not applicable.
-      # order and limit are needed later and have been saved above.
-      [:offset, :limit, :order].each do |key|
-        options.delete(key)
-      end
-      
-      # Determine total number of pages and set offset option.
-      pages = (self.count(options).to_f / limit).ceil
-      page = (pages + 1 + page) if page < 0 # Negative page
-      page = pages if page > pages # page should not be more than total pages
-      page = 1 if page < 1 # Minimum is 1 even if 0 records.
-      pages = 1 if pages < 1 # Minimum is 1 even if 0 records.
-      options[:offset] = ((page - 1) * limit)
-      
-      # Add limit and order back into options, from above.
-      options[:limit] = limit
-      options[:order] = order if order
-      
-      # Call +all+.
-      collection = all(options)
-
-      # Create +pages+ and +current_page+ methods for collection, for use by
-      # pagination links.
-      collection.instance_variable_set(:@pages, pages)
-      collection.instance_variable_set(:@current_page, page)
-      def collection.pages; @pages; end
-      def collection.current_page; @current_page; end
-      
-      return collection
+      Paginators::ORM.new(self, options).paginate
     end
   end
 end
