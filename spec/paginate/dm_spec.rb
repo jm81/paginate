@@ -4,25 +4,24 @@ require File.dirname(__FILE__) + '/../spec_helper'
 require File.dirname(__FILE__) + '/../fixtures/dm'
 
 describe Paginate::DM do
-  Model = Paginate::Fixtures::DmModel
   before(:all) do
-    Model.auto_migrate!
+    @model = Paginate::Fixtures::DmModel
+    @model.auto_migrate!
   end
   
   before(:each) do
-    Model.all.destroy!
+    @model.all.destroy!
     1.upto(50) do |i|
-      Model.create(:name => "Person #{i}")
+      @model.create(:name => "Person #{i}")
     end
-    @model = Model
   end
   
   def paginated(options = {})
-    Model.paginate(options)
+    @model.paginate(options)
   end
 
   def paginated_collected(options = {})
-    Model.paginate(options).collect {|r| r.name}
+    @model.paginate(options).collect {|r| r.name}
   end
   
   def destroy_all

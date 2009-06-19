@@ -15,27 +15,25 @@ end
 require File.dirname(__FILE__) + '/../spec_helper'
 require File.dirname(__FILE__) + '/../fixtures/ar'
 
-describe 'Paginate::AR' do
-  Model = Paginate::Fixtures::ArModel
-  
+describe 'Paginate::AR' do 
   before(:each) do
-    Model.destroy_all
+    @model = Paginate::Fixtures::ArModel
+    @model.destroy_all
     1.upto(50) do |i|
-      Model.create(:name => "Person #{i}")
+      @model.create(:name => "Person #{i}")
     end
-    @model = Model
   end
   
   def paginated(options = {})
-    Model.paginate(options)
+    @model.paginate(options)
   end
 
   def paginated_collected(options = {})
-    Model.paginate(options).collect {|r| r.name}
+    @model.paginate(options).collect {|r| r.name}
   end
   
   def destroy_all
-    Model.destroy_all
+    @model.destroy_all
   end
   
   describe '#paginate' do
