@@ -1,29 +1,27 @@
-# TODO Any config such as this? Maybe for default limit?
-# make sure we're running inside Merb
-if defined?(Merb::Plugins)
-
-  # Merb gives you a Merb::Plugins.config hash...feel free to put your stuff in your piece of it
-  Merb::Plugins.config[:paginate] = {
-    :chickens => false
+module Paginate
+  DEFAULTS = {
+    :default_limit => 10
   }
   
-  Merb::BootLoader.before_app_loads do
-    # require code that must be loaded before the application
-  end
-  
-  Merb::BootLoader.after_app_loads do
-    # code that can be required after the application loads
+  class << self
+    # Paginate::config method returns Hash that can be edited.
+    def config
+      @config ||= DEFAULTS
+    end
   end
 end
 
-module Paginate
-  DEFAULT_LIMIT = 10
+if defined?(Merb::Plugins)
+  # Make config accessible through Merb's Merb::Plugins.config hash
+  Merb::Plugins.config[:paginate] = Paginate.config
 end
 
+# Require Paginators
 %w{ simple orm }.each do |file|
   require File.dirname(__FILE__) + '/paginators/' + file
 end
 
+# Require Paginate Modules
 %w{ simple dm ar }.each do |file|
   require File.dirname(__FILE__) + '/paginate/' + file
 end

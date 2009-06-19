@@ -26,7 +26,7 @@ module Paginate
       # + get_full_count+ and +get_paginated_collection+ private methods.
       def paginate
         page = @options.delete(:page).to_i
-        limit = @options[:limit] ? @options[:limit].to_i : DEFAULT_LIMIT
+        limit = @options[:limit] ? @options[:limit].to_i : Paginate.config[:default_limit]
         order = @options[:order]
         
         # Remove some options before calling +count+ that are not applicable.

@@ -77,9 +77,8 @@ shared_examples_for "all paginate methods" do
       collection.current_page.should == 10
     end
     
-    it 'should default limit to DEFAULT_LIMIT' do
-      # Could fail if DEFAULT_LIMIT increased above @full_collection size
-      paginated().length.should == Paginate::DEFAULT_LIMIT
+    it 'should default limit to config[:default_limit]' do
+      paginated().length.should == Paginate.config[:default_limit]
     end
   end
 
