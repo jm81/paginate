@@ -1,19 +1,17 @@
 module Paginate
   
-  # .pagination method for DataMapper models.  
-  module DM
+  # .pagination method for ActiveRecord models.  
+  module AR
     
-    # Implementation of .paginate for DataMapper.
-    # (This is loosely based on http://github.com/lholden/dm-is-paginated)
+    # Implementation of .paginate for ActiveRecord.
     #
     # To make available to your model:
-    # class MyModel
-    #   include DataMapper::Resource
-    #   extend Paginate::DM
+    # class MyModel < ActiveRecord::Base
+    #   extend Paginate::AR
     #   ...
     # end
     # 
-    # Accepts same options as DataMapper::Resource.all, plus:
+    # Accepts same options as ActiveRecord::Base.all, plus:
     # - +page+: The desired page number, 1-indexed. Negative numbers represent
     #   page from the last page (with -1) being the last.
     #
