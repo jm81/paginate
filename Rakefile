@@ -1,4 +1,17 @@
 require 'rubygems'
+gem 'rspec'
+require 'spec/rake/spectask'
+
+QBFC_ROOT = File.dirname(__FILE__)
+
+task :default => :spec
+
+desc "Run all specs in spec/unit directory"
+Spec::Rake::SpecTask.new(:spec) do |t|
+  t.spec_opts = ['--options', '"spec/spec.opts"']
+  t.spec_files = FileList['spec/**/*_spec.rb']
+end
+
 require 'rake/gempackagetask'
 
 require 'merb-core'
