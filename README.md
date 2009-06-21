@@ -103,14 +103,14 @@ To create an additional Paginator, create a class that inherits
 Paginate::Paginators::Simple (or another Paginator). The key is to override
 the following methods:
 
-- #get_paginated_collection - This returns the paginated collection. At it's
+- *#get_paginated_collection* - This returns the paginated collection. At it's
   disposal is the @options hash and two particular options:
   - @options[:offset] is the zero-indexed offset of the first record of the
     page.
   - @options[:limit] is the number of items per page.
   - Other options passed the #initialize method will also be available.
 
-- #get_full_count - Return the total number of items on all pages. The @options 
+- *#get_full_count* - Return the total number of items on all pages. The @options 
   hash is available here, but :offset, :order and :limit options will not be 
   included. Options such as conditions will be available.
   
