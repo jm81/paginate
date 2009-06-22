@@ -27,6 +27,6 @@ end
 end
 
 # Require Helper Modules
-%w{ shared }.each do |file|
+%w{ shared merb }.each do |file|
   require File.dirname(__FILE__) + '/helpers/' + file
 end
