@@ -12,7 +12,8 @@ The library includes three sections (with more information on each below)
 2. Paginator classes - classes in the Paginator module do the actual work.
    Paginator::Simple is the base class.
 
-3. Helper modules - TODO
+3. Helper modules - modules with helper methods for use by frameworks
+   (currently Merb only).
 
 ##General Information
 
@@ -124,4 +125,14 @@ To use, add a paginate method to your Class or Object:
 
 ##Helper Modules
 
-TODO
+There is currently a Helpers::Shared module and Helpers::Merb.
+
+###Helpers::Shared
+
+Contains one method, *#page_set*, which returns an Array of page numbers useful
+in creating page links for the collection.
+
+###Helpers::Merb
+
+In addition to including Shared, this helper includes other methods useful for
+displaying page links. See Helpers::Merb module for details.
