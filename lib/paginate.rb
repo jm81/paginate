@@ -25,3 +25,8 @@ end
 %w{ simple dm ar }.each do |file|
   require File.dirname(__FILE__) + '/paginate/' + file
 end
+
+# Require Helper Modules
+%w{ shared }.each do |file|
+  require File.dirname(__FILE__) + '/helpers/' + file
+end
