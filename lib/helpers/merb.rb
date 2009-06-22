@@ -41,7 +41,7 @@ module Paginate
         pages   = collection.pages
         
         tag(:div, :class => 'pageLinks') do
-          if current_page == 1
+          if current == 1
             tag(:span, '&laquo;', :class => 'pageDisabled pagePrevious')
           else
             tag(:a, '&laquo;', :href => page_url(current - 1), :class => 'pagePrevious')
