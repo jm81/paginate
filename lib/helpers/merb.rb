@@ -13,7 +13,7 @@ module Paginate
       #   #pages methods.
       # - +partial_name+: location of the partial to use
       # - +padding+: Maximum number of page links before and after current_page.
-      def pagination(collection, partial_name = "layout/page_links", padding = 3)
+      def pagination_partial(collection, partial_name = "layout/page_links", padding = 3)
         padding ||= 3
         partial(partial_name, :current_page => collection.current_page, :pages => collection.pages, :padding => padding)
       end

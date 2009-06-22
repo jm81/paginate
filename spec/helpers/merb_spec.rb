@@ -13,7 +13,7 @@ describe Paginate::Helpers::Merb do
   end
 
   # Being lazy and just using a mock here.
-  describe '#pagination' do
+  describe '#pagination_partial' do
     it 'should call partial' do
       collection = (1..50).to_a
       collection.extend(Paginate::Simple)
@@ -25,7 +25,7 @@ describe Paginate::Helpers::Merb do
       }
       
       @object.should_receive(:partial).with('partial_name', vars)
-      @object.pagination(collection, 'partial_name', 4)
+      @object.pagination_partial(collection, 'partial_name', 4)
     end
   end
     
