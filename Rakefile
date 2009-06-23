@@ -18,7 +18,7 @@ require 'merb-core'
 require 'merb-core/tasks/merb'
 
 GEM_NAME = "paginate"
-GEM_VERSION = "0.1.3"
+GEM_VERSION = "0.1.4"
 AUTHOR = "Jared Morgan"
 EMAIL = "jmorgan@morgancreative.net"
 HOMEPAGE = "http://github.com/jm81/paginate/"
