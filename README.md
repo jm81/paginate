@@ -100,9 +100,9 @@ or (for example):
     DataMapper::Collection.__send__(:include, Paginate::DM) # perhaps in init.rb
     jobs = Person.first.jobs.paginate(:page => 1)
 
-Using the +DataMapper::Collection.__send__(:include, Paginate::DM)+ option makes
-the *#paginate* methods to all association collections. The first method could
-be used for ActiveRecord.
+Using the *DataMapper::Collection.\_\_send\_\_(:include, Paginate::DM)* option 
+makes the *#paginate* methods to all association collections. The first method 
+could be used for ActiveRecord.
 
 ##Paginator Classes
 
