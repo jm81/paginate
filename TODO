@@ -1,2 +1,23 @@
 TODO:
-Add your code to lib/paginate.rb
+
+- Rails helpers:
+  Probably similar to Helpers::Merb. I just don't use Rails enough right now to
+  work through it.
+
+- Check for dependencies:
+  When, for example, Paginate::DM is extended into a class, verify that dm-core
+  and dm-aggregates are loaded. This would give me more timely errors than
+  finding out when #paginate is first called.
+  
+- Generic ORM module:
+  If dependencies are checked for, this would allow a way to use Paginators::ORM
+  through a module without the dependency check.
+
+- Includes for ORM collections:
+  For example:
+  
+      DataMapper::Collection.__send__(:include, Paginate::DM)
+      
+  What's the best way to do this?
+  Something similar for AR?
+  Maybe Paginate::auto_includes which would include such as the above
