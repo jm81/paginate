@@ -41,28 +41,30 @@ module Paginate
         pages   = collection.pages
         
         tag(:div, :class => 'pageLinks') do
+          html = ''
           if current == 1
-            tag(:span, '&laquo;', :class => 'pageDisabled pagePrevious')
+            html << tag(:span, '&laquo;', :class => 'pageDisabled pagePrevious')
           else
-            tag(:a, '&laquo;', :href => page_url(current - 1), :class => 'pagePrevious')
+            html << tag(:a, '&laquo;', :href => page_url(current - 1), :class => 'pagePrevious')
           end
           
           page_set(current, pages, padding).each do |page|
             case page
             when 0
-              tag(:span, "...", :class => 'pageSpacer')
+              html << tag(:span, "...", :class => 'pageSpacer')
             when current
-              tag(:span, page, :class => 'pageCurrent')
+              html << tag(:span, page, :class => 'pageCurrent')
             else
-              tag(:a, page, :href => page_url(page), :class => 'pageNumber')
+              html << tag(:a, page, :href => page_url(page), :class => 'pageNumber')
             end
           end
         
           if current == pages
-            tag(:span, '&raquo;', :class => 'pageDisabled pageNext')
+            html << tag(:span, '&raquo;', :class => 'pageDisabled pageNext')
           else
-            tag(:a, '&raquo;', :href => page_url(current + 1), :class => 'pageNext')
+            html << tag(:a, '&raquo;', :href => page_url(current + 1), :class => 'pageNext')
           end
+          html
         end
       end
       
