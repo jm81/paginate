@@ -53,5 +53,13 @@ describe Paginate::Helpers::Merb do
       @object.page_url(5, 'path', 'limit=10&something=text&page=10').should ==
         'path?page=5&limit=10&something=text'
     end
+    
+    it 'should remove existing negative page option' do
+      @object.page_url(5, 'path', 'limit=10&page=-10&something=text').should ==
+        'path?page=5&limit=10&something=text'
+      
+      @object.page_url(5, 'path', 'page=-5&limit=10&something=text').should ==
+        'path?page=5&limit=10&something=text'
+    end
   end
 end

@@ -75,7 +75,7 @@ module Paginate
       # in the query string to be used in the page link.
       def page_url(page, path = request.path, q = request.query_string)
         # Remove any current reference to page in the query string
-        q.to_s.gsub!(/page=(\d+)(&?)/, '') 
+        q.to_s.gsub!(/page=(-?[\d]+)(&?)/, '') 
         # Assemble new link
         link = "#{path}?page=#{page}&#{q}"
         link = link[0..-2] if link[-1..-1] == '&' # Strip trailing ampersand
