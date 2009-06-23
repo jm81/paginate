@@ -90,6 +90,20 @@ There are currently three modules.
 - Paginate::DM - extended by a class that includes DataMapper::Resource
 - Paginate::AR - extended by a class that inherits ActiveRecord::Base
 
+For associated collections with DataMapper, you can use Paginator::ORM directly,
+or (for example):
+
+    jobs = Person.first.jobs
+    jobs.extend(Paginate::DM)
+    jobs.paginate(:page => 1)
+    # or
+    DataMapper::Collection.__send__(:include, Paginate::DM) # perhaps in init.rb
+    jobs = Person.first.jobs.paginate(:page => 1)
+
+Using the +DataMapper::Collection.__send__(:include, Paginate::DM)+ option makes
+the *#paginate* methods to all association collections. The first method could
+be used for ActiveRecord.
+
 ##Paginator Classes
 
 Paginator classes do the actual work of paginating and are called by the 
