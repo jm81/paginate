@@ -6,7 +6,7 @@ module Paginate
   class << self
     # Paginate::config method returns Hash that can be edited.
     def config
-      @config ||= DEFAULTS
+      @config ||= DEFAULTS.dup
     end
   end
 end
