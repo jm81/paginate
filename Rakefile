@@ -2,8 +2,6 @@ require 'rubygems'
 gem 'rspec'
 require 'spec/rake/spectask'
 
-QBFC_ROOT = File.dirname(__FILE__)
-
 task :default => :spec
 
 desc "Run all specs in spec/unit directory"
