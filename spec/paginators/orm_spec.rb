@@ -1,7 +1,7 @@
 require 'dm-core'
 require 'dm-aggregates'
-require File.dirname(__FILE__) + '/../spec_helper'
-require File.dirname(__FILE__) + '/../fixtures/dm'
+require 'spec_helper'
+require 'fixtures/dm'
 
 describe Paginate::Paginators::ORM do 
   Model = Paginate::Fixtures::DmModel

@@ -1,4 +1,6 @@
 module Paginate
+  VERSION = '0.1.6'
+  
   DEFAULTS = {
     :default_limit => 10
   }
@@ -18,15 +20,15 @@ end
 
 # Require Paginators
 %w{ simple orm }.each do |file|
-  require File.dirname(__FILE__) + '/paginators/' + file
+  require 'paginators/' + file
 end
 
 # Require Paginate Modules
 %w{ simple dm ar }.each do |file|
-  require File.dirname(__FILE__) + '/paginate/' + file
+  require 'paginate/' + file
 end
 
 # Require Helper Modules
 %w{ shared merb }.each do |file|
-  require File.dirname(__FILE__) + '/helpers/' + file
+  require 'helpers/' + file
 end

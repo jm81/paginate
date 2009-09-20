@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe Paginate::Paginators::Simple do 
   # No instance variables are expected by the shared specs, only a +paginated+

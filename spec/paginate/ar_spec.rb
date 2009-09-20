@@ -12,8 +12,8 @@ ActiveRecord::Schema.define do
   end
 end
 
-require File.dirname(__FILE__) + '/../spec_helper'
-require File.dirname(__FILE__) + '/../fixtures/ar'
+require 'spec_helper'
+require 'fixtures/ar'
 
 describe 'Paginate::AR' do 
   before(:each) do
