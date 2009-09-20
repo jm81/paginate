@@ -3,7 +3,7 @@ require 'active_record'
 # Setup AR connection, schema
 ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
-  :dbfile  => ":memory:"
+  :database  => ":memory:"
 )
 
 ActiveRecord::Schema.define do
