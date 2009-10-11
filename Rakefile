@@ -4,14 +4,19 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "paginate"
+    gem.name = "jm81-paginate"
     gem.summary = "Pagination for DataMapper, ActiveRecord, and Array"
+    gem.description = <<EOF
+This paginate library assists in paginating collections and results of database 
+queries. It is particularly designed for use with DataMapper and ActiveRecord, 
+and for the Merb and Rails frameworks, but can be used in many other situations.
+EOF
     gem.email = "jmorgan@morgancreative.net"
     gem.homepage = "http://github.com/jm81/paginate"
     gem.authors = ["Jared Morgan"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
-
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
