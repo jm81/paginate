@@ -45,7 +45,7 @@ module Paginate
           if current == 1
             html << tag(:span, '&laquo;', :class => 'pageDisabled pagePrevious')
           else
-            html << tag(:a, '&laquo;', :href => page_url(current - 1), :class => 'pagePrevious')
+            html << tag(:a, '&laquo;', :href => url_for_pagination(current - 1), :class => 'pagePrevious')
           end
           
           page_set(current, pages, padding).each do |page|
@@ -55,32 +55,18 @@ module Paginate
             when current
               html << tag(:span, page, :class => 'pageCurrent')
             else
-              html << tag(:a, page, :href => page_url(page), :class => 'pageNumber')
+              html << tag(:a, page, :href => url_for_pagination(page), :class => 'pageNumber')
             end
           end
         
           if current == pages
             html << tag(:span, '&raquo;', :class => 'pageDisabled pageNext')
           else
-            html << tag(:a, '&raquo;', :href => page_url(current + 1), :class => 'pageNext')
+            html << tag(:a, '&raquo;', :href => url_for_pagination(current + 1), :class => 'pageNext')
           end
           html
         end
       end
-      
-      # +page_url+ generates a URL (for page links), given a page number and
-      # optionally a path and query string. By default, the path is the path
-      # of the current request, and the query_string is also that of the
-      # current request. This allows for order and condition related fields
-      # in the query string to be used in the page link.
-      def page_url(page, path = request.path, q = request.query_string)
-        # Remove any current reference to page in the query string
-        q.to_s.gsub!(/page=(-?[\d]+)(&?)/, '') 
-        # Assemble new link
-        link = "#{path}?page=#{page}&#{q}"
-        link = link[0..-2] if link[-1..-1] == '&' # Strip trailing ampersand
-        link
-      end      
     end
   end
 end

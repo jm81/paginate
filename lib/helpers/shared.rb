@@ -38,6 +38,20 @@ module Paginate
         # Join Arrays together
         leader + (first..last).to_a + footer
       end
+
+      # Generate a URL (for page links), given a page number and
+      # optionally a path and query string. By default, the path is the path
+      # of the current request, and the query_string is also that of the
+      # current request. This allows for order and condition related fields
+      # in the query string to be used in the page link.
+      def url_for_pagination(page, path = request.path, q = request.query_string)
+        # Remove any current reference to page in the query string
+        q.to_s.gsub!(/page=(-?[\d]+)(&?)/, '')
+        # Assemble new link
+        link = "#{path}?page=#{page}&#{q}"
+        link = link[0..-2] if link[-1..-1] == '&' # Strip trailing ampersand
+        link
+      end
     end
   end
 end

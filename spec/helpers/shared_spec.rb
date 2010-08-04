@@ -58,4 +58,38 @@ describe Paginate::Helpers::Shared do
         [1]
     end
   end
+
+  describe '#url_for_pagination' do
+    it 'should add page query option' do
+      @object.url_for_pagination(5, 'path', '').should ==
+        'path?page=5'
+    end
+
+    it 'should leave other query options' do
+      @object.url_for_pagination(5, 'path', 'limit=10&something=text').should ==
+        'path?page=5&limit=10&something=text'
+    end
+
+    it 'should remove existing page option' do
+      # middle
+      @object.url_for_pagination(5, 'path', 'limit=10&page=10&something=text').should ==
+        'path?page=5&limit=10&something=text'
+
+      # start
+      @object.url_for_pagination(5, 'path', 'page=10&limit=10&something=text').should ==
+        'path?page=5&limit=10&something=text'
+
+      # end
+      @object.url_for_pagination(5, 'path', 'limit=10&something=text&page=10').should ==
+        'path?page=5&limit=10&something=text'
+    end
+
+    it 'should remove existing negative page option' do
+      @object.url_for_pagination(5, 'path', 'limit=10&page=-10&something=text').should ==
+        'path?page=5&limit=10&something=text'
+
+      @object.url_for_pagination(5, 'path', 'page=-5&limit=10&something=text').should ==
+        'path?page=5&limit=10&something=text'
+    end
+  end
 end

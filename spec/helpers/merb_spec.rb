@@ -28,38 +28,4 @@ describe Paginate::Helpers::Merb do
       @object.pagination_partial(collection, 'partial_name', 4)
     end
   end
-    
-  describe '#page_url' do
-    it 'should add page query option' do
-      @object.page_url(5, 'path', '').should ==
-        'path?page=5'
-    end
-
-    it 'should leave other query options' do
-      @object.page_url(5, 'path', 'limit=10&something=text').should ==
-        'path?page=5&limit=10&something=text'
-    end
-    
-    it 'should remove existing page option' do
-      # middle
-      @object.page_url(5, 'path', 'limit=10&page=10&something=text').should ==
-        'path?page=5&limit=10&something=text'
-      
-      # start
-      @object.page_url(5, 'path', 'page=10&limit=10&something=text').should ==
-        'path?page=5&limit=10&something=text'
-      
-      # end
-      @object.page_url(5, 'path', 'limit=10&something=text&page=10').should ==
-        'path?page=5&limit=10&something=text'
-    end
-    
-    it 'should remove existing negative page option' do
-      @object.page_url(5, 'path', 'limit=10&page=-10&something=text').should ==
-        'path?page=5&limit=10&something=text'
-      
-      @object.page_url(5, 'path', 'page=-5&limit=10&something=text').should ==
-        'path?page=5&limit=10&something=text'
-    end
-  end
 end
