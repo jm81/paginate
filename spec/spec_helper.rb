@@ -1,5 +1,5 @@
 require 'rubygems'
 require 'spec'
 
-require 'paginate'
+require 'jm81-paginate'
 require 'shared'
