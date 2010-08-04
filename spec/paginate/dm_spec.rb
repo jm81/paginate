@@ -1,6 +1,7 @@
+require 'spec_helper'
 require 'dm-core'
 require 'dm-aggregates'
-require 'spec_helper'
+require 'dm-migrations'
 require 'fixtures/dm'
 
 describe Paginate::DM do

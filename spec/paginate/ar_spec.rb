@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'active_record'
 
 # Setup AR connection, schema
@@ -12,7 +13,6 @@ ActiveRecord::Schema.define do
   end
 end
 
-require 'spec_helper'
 require 'fixtures/ar'
 
 describe 'Paginate::AR' do 
