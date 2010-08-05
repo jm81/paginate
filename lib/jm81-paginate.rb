@@ -29,6 +29,6 @@ end
 end
 
 # Require Helper Modules
-%w{ shared merb }.each do |file|
+%w{ shared merb rails }.each do |file|
   require 'helpers/' + file
 end
