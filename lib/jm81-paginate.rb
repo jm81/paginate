@@ -1,6 +1,4 @@
 module Paginate
-  VERSION = '0.1.6'
-  
   DEFAULTS = {
     :default_limit => 10
   }

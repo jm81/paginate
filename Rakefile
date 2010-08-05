@@ -1,10 +1,12 @@
 require 'rubygems'
 require 'rake'
+require File.join(File.dirname(__FILE__), 'lib', 'jm81-paginate', 'version')
 
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "jm81-paginate"
+    gem.version = Paginate::VERSION.dup
     gem.summary = "Pagination for DataMapper, ActiveRecord, and Array"
     gem.description = <<EOF
 This paginate library assists in paginating collections and results of database 
