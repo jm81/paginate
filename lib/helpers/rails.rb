@@ -45,7 +45,7 @@ module Paginate
           if current == 1
             html << content_tag(:span, :class => 'pageDisabled pagePrevious') { '&laquo;' }
           else
-            html << content_tag(:a, :href => page_url(current - 1), :class => 'pagePrevious') { '&laquo;' }
+            html << content_tag(:a, :href => url_for_pagination(current - 1), :class => 'pagePrevious') { '&laquo;' }
           end
           
           page_set(current, pages, padding).each do |page|
@@ -55,14 +55,14 @@ module Paginate
             when current
               html << content_tag(:span, :class => 'pageCurrent') { page.to_s }
             else
-              html << content_tag(:a, :href => page_url(page), :class => 'pageNumber') { page.to_s }
+              html << content_tag(:a, :href => url_for_pagination(page), :class => 'pageNumber') { page.to_s }
             end
           end
         
           if current == pages
             html << content_tag(:span, :class => 'pageDisabled pageNext') { '&raquo;' }
           else
-            html << content_tag(:a, :href => page_url(current + 1), :class => 'pageNext') { '&raquo;' }
+            html << content_tag(:a, :href => url_for_pagination(current + 1), :class => 'pageNext') { '&raquo;' }
           end
           html
         end
