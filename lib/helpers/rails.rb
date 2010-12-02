@@ -43,9 +43,9 @@ module Paginate
         content_tag(:div, {:class => 'pageLinks'}, false) do
           html = ''.html_safe
           if current == 1
-            html << content_tag(:span, :class => 'pageDisabled pagePrevious') { '&laquo;' }
+            html << content_tag(:span, :class => 'pageDisabled pagePrevious') { '&laquo;'.html_safe }
           else
-            html << content_tag(:a, :href => url_for_pagination(current - 1), :class => 'pagePrevious') { '&laquo;' }
+            html << content_tag(:a, :href => url_for_pagination(current - 1), :class => 'pagePrevious') { '&laquo;'.html_safe }
           end
           
           page_set(current, pages, padding).each do |page|
@@ -60,9 +60,9 @@ module Paginate
           end
         
           if current == pages
-            html << content_tag(:span, :class => 'pageDisabled pageNext') { '&raquo;' }
+            html << content_tag(:span, :class => 'pageDisabled pageNext') { '&raquo;'.html_safe }
           else
-            html << content_tag(:a, :href => url_for_pagination(current + 1), :class => 'pageNext') { '&raquo;' }
+            html << content_tag(:a, :href => url_for_pagination(current + 1), :class => 'pageNext') { '&raquo;'.html_safe }
           end
           html
         end
