@@ -1,27 +1,11 @@
-require 'rubygems'
 require 'rake'
+require 'rake/testtask'
+require 'rdoc/task'
+require 'rubygems'
 require File.join(File.dirname(__FILE__), 'lib', 'jm81-paginate', 'version')
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "jm81-paginate"
-    gem.version = Paginate::VERSION.dup
-    gem.summary = "Pagination for DataMapper, ActiveRecord, and Array"
-    gem.description = <<EOF
-This paginate library assists in paginating collections and results of database 
-queries. It is particularly designed for use with DataMapper and ActiveRecord, 
-and for the Merb and Rails frameworks, but can be used in many other situations.
-EOF
-    gem.email = "jmorgan@morgancreative.net"
-    gem.homepage = "http://github.com/jm81/paginate"
-    gem.authors = ["Jared Morgan"]
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
-end
+desc 'Default: run unit tests.'
+task :default => :specs
 
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
@@ -35,20 +19,10 @@ Spec::Rake::SpecTask.new(:rcov) do |spec|
   spec.rcov = true
 end
 
-
-task :default => :spec
-
-require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
-  if File.exist?('VERSION.yml')
-    config = YAML.load(File.read('VERSION.yml'))
-    version = "#{config[:major]}.#{config[:minor]}.#{config[:patch]}"
-  else
-    version = ""
-  end
-
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "svn-fixture #{version}"
+  rdoc.title    = 'jm81-paginate'
+  rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
